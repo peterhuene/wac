@@ -10,6 +10,8 @@ keywords = { workspace = true }
 repository = { workspace = true }
 
 [dependencies]
+wac-graph = { workspace = true }
+wac-types = { workspace = true }
 wac-parser = { workspace = true }
 semver = { workspace = true }
 thiserror = { workspace = true }

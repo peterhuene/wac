@@ -47,6 +47,8 @@ registry = ["wac-resolver/registry", "indicatif"]
 [workspace.dependencies]
 wac-parser = { path = "crates/wac-parser", default-features = false }
 wac-resolver = { path = "crates/wac-resolver", default-features = false }
+wac-graph = { path = "crates/wac-graph" }
+wac-types = { path = "crates/wac-types" }
 wit-parser = "0.201.0"
 wasmparser = "0.201.0"
 wit-component = "0.201.0"
@@ -77,3 +79,4 @@ secrecy = "0.8.0"
 futures = "0.3.30"
 indicatif = "0.17.8"
 pretty_assertions = "1.4.0"
+petgraph = "0.6.4"

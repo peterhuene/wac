@@ -3854,6 +3854,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "wac-graph"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "id-arena",
+ "indexmap 2.2.5",
+ "log",
+ "petgraph",
+ "semver",
+ "serde 1.0.197",
+ "thiserror",
+ "wac-types",
+ "wasm-encoder 0.201.0",
+ "wasmparser 0.201.0",
+]
+
+[[package]]
 name = "wac-parser"
 version = "0.1.0"
 dependencies = [
@@ -3895,7 +3912,9 @@ dependencies = [
  "thiserror",
  "tokio",
  "tokio-util",
+ "wac-graph",
  "wac-parser",
+ "wac-types",
  "warg-client",
  "warg-credentials",
  "warg-crypto",
@@ -3905,6 +3924,19 @@ dependencies = [
  "wat",
  "wit-component",
  "wit-parser",
+]
+
+[[package]]
+name = "wac-types"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "id-arena",
+ "indexmap 2.2.5",
+ "semver",
+ "serde 1.0.197",
+ "wasm-encoder 0.201.0",
+ "wasmparser 0.201.0",
 ]
 
 [[package]]

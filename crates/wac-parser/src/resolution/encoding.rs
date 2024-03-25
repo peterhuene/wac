@@ -598,7 +598,7 @@ impl<'a> TypeEncoder<'a> {
         log::debug!("encoding instance type for interface {id}", id = id.index());
         let interface = &self.0.interfaces[id];
         for used in interface.uses.values() {
-            self.import_deps(state, self.0, used.interface)?;
+            self.import_deps(state, used.interface)?;
         }
 
         // Encode any required aliases
@@ -650,7 +650,7 @@ impl<'a> TypeEncoder<'a> {
         state.push(Encodable::Component(ComponentType::default()));
 
         for used in world.uses.values() {
-            self.import_deps(state, self.0, used.interface)?;
+            self.import_deps(state, used.interface)?;
         }
 
         self.use_aliases(state, &world.uses);
@@ -674,21 +674,16 @@ impl<'a> TypeEncoder<'a> {
         }
     }
 
-    fn import_deps(
-        &self,
-        state: &mut State<'a>,
-        definitions: &Definitions,
-        id: InterfaceId,
-    ) -> anyhow::Result<()> {
+    fn import_deps(&self, state: &mut State<'a>, id: InterfaceId) -> anyhow::Result<()> {
         if state.current.instances.contains_key(&id) {
             return Ok(());
         }
 
-        let interface = &definitions.interfaces[id];
+        let interface = &self.0.interfaces[id];
 
         // Depth-first recurse on the dependencies of this interface
         for used in interface.uses.values() {
-            self.import_deps(state, definitions, used.interface)?;
+            self.import_deps(state, used.interface)?;
         }
 
         let name = self.0.interfaces[id]
@@ -726,7 +721,7 @@ impl<'a> TypeEncoder<'a> {
         state.push(Encodable::Component(ComponentType::default()));
 
         for used in interface.uses.values() {
-            self.import_deps(state, self.0, used.interface)?;
+            self.import_deps(state, used.interface)?;
         }
 
         let index = self.instance(state, id, false)?;
